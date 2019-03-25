@@ -53,8 +53,6 @@ $(document).ready(function () {
 
             $("#images-content").append(newDiv);
 
-            // $("#images-content").append(rateText);
-            // $("#images-content").append(imageToCreate);
         }
 
     }
@@ -64,7 +62,7 @@ $(document).ready(function () {
         var value = $(this).val();
         console.log(value);
         $.ajax({
-            url: "http://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=" + key + "&limit=10",
+            url: "https://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=" + key + "&limit=10",
             method: "GET"
         }).then(function (data) {
             console.log(data);
