@@ -9,7 +9,6 @@ var buttonsArray = ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "
 $(document).ready(function () {
     GenerateButtons(buttonsArray);
 
-
     function GenerateButtons(array) {
 
         $("#buttons-content").empty();
@@ -38,7 +37,7 @@ $(document).ready(function () {
             rateText.text("Rating: "+data.data[i].rating);
 
             imageToCreate = $("<img>");
-            imageToCreate.addClass("gifImage");
+            imageToCreate.addClass("gifImage img-fluid");
             imageToCreate.attr({
                 "src": data.data[i].images.original_still.url,
                 "data-still": data.data[i].images.original_still.url,
@@ -47,14 +46,13 @@ $(document).ready(function () {
             });
 
             newDiv = $("<div>");
-            newDiv.addClass("m-3");
+            newDiv.addClass("m-1");
             newDiv.append(rateText);
             newDiv.append(imageToCreate);
+            newDiv.height("100%");
 
             $("#images-content").append(newDiv);
-
         }
-
     }
 
 
