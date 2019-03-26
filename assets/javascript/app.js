@@ -6,8 +6,11 @@ var buttonsArray = ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "
     "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark",
     "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"];
 
+
 $(document).ready(function () {
     GenerateButtons(buttonsArray);
+
+
 
     function GenerateButtons(array) {
 
@@ -34,7 +37,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < data.data.length; i++) {
             rateText = $("<p>");
-            rateText.text("Rating: "+data.data[i].rating);
+            rateText.text("Rating: " + data.data[i].rating);
 
             imageToCreate = $("<img>");
             imageToCreate.addClass("gifImage img-fluid");
@@ -53,8 +56,8 @@ $(document).ready(function () {
 
             $("#images-content").append(newDiv);
         }
+       
     }
-
 
     $(document).on("click", "button", function () {
         var value = $(this).val();
@@ -79,7 +82,7 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click",".gifImage", function () {
+    $(document).on("click", ".gifImage", function () {
 
         var state = $(this).attr("data-state");
 
