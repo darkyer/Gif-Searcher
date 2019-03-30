@@ -34,39 +34,63 @@ $(document).ready(function () {
         var imageToCreate;
         var rateText;
         var newDiv;
+        var star;
 
         for (var i = 0; i < data.data.length; i++) {
             rateText = $("<p>");
+            rateText.addClass("text-center");
             rateText.text("Rating: " + data.data[i].rating);
 
             imageToCreate = $("<img>");
-            imageToCreate.addClass("gifImage img-fluid");
+            imageToCreate.addClass("gifImage img-fluid rounded mx-auto d-block");
             imageToCreate.attr({
-                "src": data.data[i].images.original_still.url,
-                "data-still": data.data[i].images.original_still.url,
-                "data-animate": data.data[i].images.original.url,
+                "src": data.data[i].images.fixed_height_still.url,
+                "data-still": data.data[i].images.fixed_height_still.url,
+                "data-animate": data.data[i].images.fixed_height.url,
                 "data-state": "still"
             });
 
+            star = $("<img>");
+            star.addClass("star");
+            star.attr({
+                "src": "assets/images/unstar.png",
+                "data-unstar": "assets/images/unstar.png",
+                "data-star": "assets/images/star.png",
+                "data-id": data.meta.response_id,
+                "data-number": i,
+                "data-state": GetStarStatus(data.meta.response_id + "&" + i)
+            });
+
+            if(star.attr("data-state") == 1){
+                console.log("Swapping: "+data.meta.response_id + "&" + i);
+                star.attr("src",star.attr("data-star"));
+            }
+
+
             newDiv = $("<div>");
-            newDiv.addClass("m-1");
+            newDiv.addClass("p-1 m-1 gifContainer rounded");
             newDiv.append(rateText);
             newDiv.append(imageToCreate);
-            newDiv.height("100%");
+            newDiv.append(star);
 
-            $("#images-content").append(newDiv);
+            var mainDiv = $("<div>");
+            mainDiv.addClass("col-sm-12 col-md-12 col-lg-4");
+
+            mainDiv.append(newDiv);
+
+            $("#images-content").append(mainDiv);
         }
-       
+
     }
 
     $(document).on("click", "button", function () {
         var value = $(this).val();
-        console.log(value);
+        // console.log(value);
         $.ajax({
-            url: "https://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=" + key + "&limit=10",
+            url: "https://api.giphy.com/v1/gifs/search?q=" + value + "&api_key=" + key + "&limit=12",
             method: "GET"
         }).then(function (data) {
-            console.log(data);
+            // console.log(data);
             GenerateImages(data);
         });
     });
@@ -81,6 +105,15 @@ $(document).ready(function () {
             GenerateButtons(buttonsArray);
         }
     });
+
+    function GetStarStatus(string) {
+        var status = getCookie(string);
+        if (status == "") {
+            return 0;
+        }
+        // console.log(status);
+        return status;
+    }
 
     $(document).on("click", ".gifImage", function () {
 
@@ -98,4 +131,49 @@ $(document).ready(function () {
             $(this).attr("data-state", "still");
         }
     });
+
+    $(document).on("click", ".star", function () {
+
+        var elementToSave = $(this).attr("data-id") + "&" + $(this).attr("data-number");
+
+
+        if ($(this).attr("data-state") == 0) {
+            console.log("Saving: "+elementToSave+" 1");
+            setCookie(elementToSave, 1, 10);
+            $(this).attr("data-state", 1);
+            $(this).attr("src", $(this).attr("data-star"));
+        }else{
+            console.log("Saving: "+elementToSave+" 0");
+            setCookie(elementToSave, 0, 10);
+            $(this).attr("data-state", 0);
+            $(this).attr("src", $(this).attr("data-unstar"));
+        }
+
+    });
+
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                console.log("Getting: "+c.substring(name.length, c.length));
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 });
