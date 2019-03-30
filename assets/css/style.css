@@ -6,6 +6,17 @@ body{
     background-color: lightgray;
 }
 
+.header{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-image: url("../images/bg.jpg");
+}
+
+#gif-form{
+    margin-top:40px;
+}
+
+
 .star{
     position: absolute;
     top: 4%;

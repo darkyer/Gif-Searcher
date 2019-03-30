@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <div class=" container">
+
+    <div class="header mb-4">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-4 text-center"></div>
             <div class="col-sm-12 col-md-12 col-lg-4 mt-4 text-center">
@@ -23,19 +24,23 @@
             <div class="col-sm-12 col-md-12 col-lg-4 text-center">
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 mt-4 mb-4 text-center">
-                <form id="gif-form">
-                    <label for="gif-input">Search for a gif</label>
-                    <input type="text" id="gif-input"><br>
-
-                    <!-- This button will trigger our AJAX call -->
-                    <input id="find-gif" type="submit" value="Gif Search">
-                </form>
-            </div>
+        <div class=" container mt-4">
+            <form id="gif-form">
+                <div class="form-group row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                        <input type="text" class="form-control" id="gif-input" aria-describedby="emailHelp" placeholder="Search for a gif">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                        <!-- This button will trigger our AJAX call -->
+                        <button type="submit" id="find-gif" class="btn btn-primary" value="Gif Search">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
+    </div>
+    <div class=" container">
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 text-center" id="buttons-content">
 
