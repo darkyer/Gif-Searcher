@@ -61,9 +61,9 @@ $(document).ready(function () {
                 "data-state": GetStarStatus(data.meta.response_id + "&" + i)
             });
 
-            if(star.attr("data-state") == 1){
-                console.log("Swapping: "+data.meta.response_id + "&" + i);
-                star.attr("src",star.attr("data-star"));
+            if (star.attr("data-state") == 1) {
+                console.log("Swapping: " + data.meta.response_id + "&" + i);
+                star.attr("src", star.attr("data-star"));
             }
 
 
@@ -101,10 +101,20 @@ $(document).ready(function () {
 
         var gif = $("#gif-input").val().trim();
 
-        if (gif == "" ||  !buttonsArray.includes(gif)) {
+        if (gif == "" || !buttonsArray.includes(gif)) {
             buttonsArray.push(gif);
             GenerateButtons(buttonsArray);
         }
+    });
+
+
+    $("#favorites").on("click", function (event) {
+        event.preventDefault();
+
+        var ca = document.cookie.split(';');
+
+        console.log(ca);
+
     });
 
     function GetStarStatus(string) {
@@ -139,12 +149,12 @@ $(document).ready(function () {
 
 
         if ($(this).attr("data-state") == 0) {
-            console.log("Saving: "+elementToSave+" 1");
+            console.log("Saving: " + elementToSave + " 1");
             setCookie(elementToSave, 1, 10);
             $(this).attr("data-state", 1);
             $(this).attr("src", $(this).attr("data-star"));
-        }else{
-            console.log("Saving: "+elementToSave+" 0");
+        } else {
+            console.log("Saving: " + elementToSave + " 0");
             setCookie(elementToSave, 0, 10);
             $(this).attr("data-state", 0);
             $(this).attr("src", $(this).attr("data-unstar"));
@@ -171,7 +181,7 @@ $(document).ready(function () {
                 c = c.substring(1);
             }
             if (c.indexOf(name) == 0) {
-                console.log("Getting: "+c.substring(name.length, c.length));
+                console.log("Getting: " + c.substring(name.length, c.length));
                 return c.substring(name.length, c.length);
             }
         }
