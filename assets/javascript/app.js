@@ -1,10 +1,10 @@
 
 var key = "lAGLM918Q8MJr3xUyZuFdZhMm2f844I7";
 
-var buttonsArray = ["alligator", "ant", "bear", "bee", "bird", "camel", "cat", "cheetah", "chicken", "chimpanzee", "cow", "crocodile",
-    "deer", "dog", "dolphin", "duck", "eagle", "elephant", "fish", "fly", "fox", "frog", "giraffe", "goat", "goldfish", "hamster", "hippopotamus",
-    "horse", "kangaroo", "kitten", "lion", "lobster", "monkey", "octopus", "owl", "panda", "pig", "puppy", "rabbit", "rat", "scorpion", "seal", "shark",
-    "sheep", "snail", "snake", "spider", "squirrel", "tiger", "turtle", "wolf", "zebra"];
+var buttonsArray = ["Alligator", "Ant", "Bear", "Bee", "Bird", "Camel", "Cat", "Cheetah", "Chicken", "Chimpanzee", "Cow", "Crocodile",
+    "Deer", "Dog", "Dolphin", "Duck", "Eagle", "Elephant", "Fish", "Fly", "Fox", "Frog", "Giraffe", "Goat", "Goldfish", "Hamster", "Hippopotamus",
+    "Horse", "Kangaroo", "Kitten", "Lion", "Lobster", "Monkey", "Octopus", "Owl", "Panda", "Pig", "Puppy", "Rabbit", "Rat", "Scorpion", "Seal", "Shark",
+    "Sheep", "Snail", "Snake", "Spider", "Squirrel", "Tiger", "Turtle", "Wolf", "Zebra"];
 
 
 $(document).ready(function () {
@@ -20,8 +20,8 @@ $(document).ready(function () {
         for (var i = 0; i < array.length; i++) {
             buttonToCreate = $("<button>");
             buttonToCreate.text(array[i]);
-            buttonToCreate.addClass("btn btn-primary m-1");
-            buttonToCreate.attr("type", "button");
+            buttonToCreate.addClass("btn btn-primary m-1 gifButton");
+            // buttonToCreate.attr("type", "button");
             buttonToCreate.attr("value", array[i]);
             $("#buttons-content").append(buttonToCreate);
         }
@@ -38,7 +38,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < data.data.length; i++) {
             rateText = $("<p>");
-            rateText.addClass("text-center");
+            rateText.addClass("text-center rating");
             rateText.text("Rating: " + data.data[i].rating);
 
             imageToCreate = $("<img>");
@@ -83,7 +83,7 @@ $(document).ready(function () {
 
     }
 
-    $(document).on("click", "button", function () {
+    $(document).on("click", ".gifButton", function () {
         var value = $(this).val();
         // console.log(value);
         $.ajax({
@@ -98,9 +98,10 @@ $(document).ready(function () {
     $("#find-gif").on("click", function (event) {
         event.preventDefault();
 
+
         var gif = $("#gif-input").val().trim();
 
-        if (!buttonsArray.includes()) {
+        if (gif == "" ||  !buttonsArray.includes(gif)) {
             buttonsArray.push(gif);
             GenerateButtons(buttonsArray);
         }

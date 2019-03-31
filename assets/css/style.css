@@ -3,7 +3,7 @@ body{
 }
 
 .gifContainer{
-    background-color: lightgray;
+    background-color: #352933;
 }
 
 .header{
@@ -12,6 +12,11 @@ body{
     background-image: url("../images/bg.jpg");
     background-size: cover;
     background-position: bottom;
+}
+
+.rating
+{
+    color:white;
 }
 
 .spacer{
@@ -24,6 +29,47 @@ body{
     margin-top:40px;
 }
 
+.form-control{
+    background-color: rgba(31, 31, 31, 0.897);
+    color:white;
+}
+
+.form-control:focus{
+    background-color: rgba(54, 54, 54, 0.897);
+    color:white;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+.btn-primary{
+    background-color: rgba(0, 0, 0, 0.259);
+    border-color: #aaaaaa;
+    border-radius: 0px;
+}
+
+.btn-primary:hover{
+    background-color: rgba(58, 58, 58, 0.685);
+    border-color: #aaaaaa;
+    border-radius: 0px;
+
+}
+
+.btn-primary:focus{
+    background-color: rgba(0, 0, 0, 0.859);
+    border-color: #aaaaaa;
+    border-radius: 0px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary:active{
+    background-color: rgb(82, 82, 82);
+    border-color: #aaaaaa;
+    border-radius: 0px;
+    outline: none !important;
+    box-shadow: none !important;
+}
 
 .star{
     position: absolute;
