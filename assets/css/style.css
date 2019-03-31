@@ -64,8 +64,8 @@ body{
 }
 
 .btn-primary:active{
-    background-color: rgb(82, 82, 82);
-    border-color: #aaaaaa;
+    background-color: rgb(82, 82, 82) !important;;
+    border-color: #aaaaaa !important;;
     border-radius: 0px;
     outline: none !important;
     box-shadow: none !important;
