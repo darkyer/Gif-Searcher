@@ -111,7 +111,7 @@ $(document).ready(function () {
     $("#favorites").on("click", function (event) {
         event.preventDefault();
 
-        var ca = document.cookie.split(';');
+        var ca = document.cookie.split(";");
 
         console.log(ca);
 
